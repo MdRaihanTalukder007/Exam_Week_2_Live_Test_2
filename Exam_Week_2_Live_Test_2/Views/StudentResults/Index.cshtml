@@ -1,0 +1,41 @@
+﻿@model List<Exam_Week_2_Live_Test_2.Models.StudentResultViewModel>
+@using Exam_Week_2_Live_Test_2.Models
+
+<h2>Student Results</h2>
+
+<form method="get">
+    <label for="status">Filter by Status:</label>
+    <select id="status" name="status" onchange="this.form.submit()">
+        <option value="">All</option>
+        @foreach (var status in Enum.GetValues(typeof(ResultStatus)))
+        {
+            <option value="@status">@status</option>
+        }
+    </select>
+</form>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Student Name</th>
+            <th>Course Title</th>
+            <th>Total Marks</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.StudentName</td>
+                <td>@item.CourseTitle</td>
+                <td>@item.TotalMarks</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="/StudentResults/Create">Add New Result</a>
