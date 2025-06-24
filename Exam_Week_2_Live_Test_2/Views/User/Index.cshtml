@@ -1,0 +1,39 @@
+﻿
+
+<form method="get">
+    <div class="form-group">
+        <label for="roleId">Filter by Role:</label>
+        <div style="
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+">
+            <select id="roleId" name="roleId" asp-items="ViewBag.Roles" class="form-select single-select dropdown">
+                <option value="">All Roles</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FullName</td>
+                <td>@user.Role.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

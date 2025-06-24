@@ -1,4 +1,5 @@
 using Exam_Week_2_Live_Test_2.Data;
+using Exam_Week_2_Live_Test_2.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnetionString")));
-
+builder.Services.AddTransient<IUserRepo, UserRepo>();
 
 var app = builder.Build();
 
@@ -28,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=StudentResults}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Index}/{id?}");
 
 app.Run();
